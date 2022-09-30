@@ -22,15 +22,18 @@ public class CalendarTest extends BaseTest {
     public void test01(){
         //clicking input field to see calendar pop-up
         //driver.findElement(By.xpath("(//div[@class='react-datepicker__input-container'])[2]")).click();
-        calendarPage.endDateInput.click();
+        //calendarPage.endDateInput.click();
+        calendarPage.click(calendarPage.endDateInput);
 
         //selecting next day from the calendar
         //driver.findElement(By.xpath("//div[contains(@class, 'keyboard-selected')]/following-sibling::div")).click();
-        calendarPage.endDateCalendar.click();
+        //calendarPage.endDateCalendar.click();
+        calendarPage.click(calendarPage.endDateCalendar);
 
         //click submit button
         //driver.findElement(By.xpath("//button[text()='Submit']")).click();
-        calendarPage.submitBtn.click();
+        //calendarPage.submitBtn.click();
+        calendarPage.click(calendarPage.submitBtn);
 
         //String startDate = driver.findElement(By.xpath("//div[@class='react-datepicker__input-container']/input")).getAttribute("value");
         String startDate = calendarPage.startDateTxt.getAttribute("value");
@@ -46,7 +49,8 @@ public class CalendarTest extends BaseTest {
 
         String expectedTxt = "There are 1 days between " + startDate + " and " + endDate + "";
         //String actualTxt = driver.findElement(By.id("num-days")).getText();
-        String actualTxt = calendarPage.numberOfDaysTxt.getText();
+        //String actualTxt = calendarPage.numberOfDaysTxt.getText();
+        String actualTxt = calendarPage.getText(calendarPage.numberOfDaysTxt);
 
         Assert.assertEquals(actualTxt, expectedTxt);
 
