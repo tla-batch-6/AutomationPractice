@@ -38,4 +38,5 @@ public class BaseTest {
                 System.out.println("Invalid browser name");
         }
     }
+
 }

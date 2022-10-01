@@ -32,4 +32,5 @@ public class HomeTest extends BaseTest {
         Assert.assertTrue(driver.findElement(By.xpath("//a[contains(@class,'navbar-brand ml-3') and text()='" + navBtn + "']")).isDisplayed());
     }
 
+
 }

@@ -8,16 +8,19 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import pages.UserMgtPage;
 
 import java.util.List;
 import java.util.Set;
 
 public class UserMgtTest extends BaseTest {
+    private UserMgtPage page;
 
     @BeforeMethod(alwaysRun = true)
     public void setUp(){
         super.setUp();
         driver.findElement(By.xpath("//nav/a[text()='User-Mgt']")).click();
+        page = new UserMgtPage(driver);
     }
 
     @Test(testName = "US1010: Staging table view", dataProvider = "roles", dataProviderClass = DataProviders.class)
@@ -28,12 +31,24 @@ public class UserMgtTest extends BaseTest {
         String phone = faker.phoneNumber().cellPhone();
         String email = faker.internet().emailAddress();
 
-        driver.findElement(By.id("Firstname")).sendKeys(firstName);
-        driver.findElement(By.id("Lastname")).sendKeys(lastName);
-        driver.findElement(By.id("Phonenumber")).sendKeys(phone);
-        driver.findElement(By.id("Email")).sendKeys(email);
-        driver.findElement(By.id("Select-role")).sendKeys(role);
-        driver.findElement(By.id("submit-btn")).click();
+        //version 1
+//        driver.findElement(By.id("Firstname")).sendKeys(firstName);
+//        driver.findElement(By.id("Lastname")).sendKeys(lastName);
+//        driver.findElement(By.id("Phonenumber")).sendKeys(phone);
+//        driver.findElement(By.id("Email")).sendKeys(email);
+//        driver.findElement(By.id("Select-role")).sendKeys(role);
+//        driver.findElement(By.id("submit-btn")).click();
+
+        //version 2
+//        page.firstNameInput.sendKeys(firstName);
+//        page.lastNameInput.sendKeys(lastName);
+//        page.phoneInput.sendKeys(phone);
+//        page.emailInput.sendKeys(email);
+//        page.roleInput.sendKeys(role);
+//        page.submitBtn.click();
+
+        //version 3
+        page.addNewUser(firstName, lastName, phone, email, role);
 
         Assert.assertEquals(driver.findElement(By.xpath("//td[1]")).getText(), firstName);
         Assert.assertEquals(driver.findElement(By.xpath("//td[2]")).getText(), lastName);
@@ -52,27 +67,16 @@ public class UserMgtTest extends BaseTest {
         String email = faker.internet().emailAddress();//test@gmail.com
 
         //adding user to the table
-        driver.findElement(By.id("Firstname")).sendKeys(firstName);
-        driver.findElement(By.id("Lastname")).sendKeys(lastName);
-        driver.findElement(By.id("Phonenumber")).sendKeys(phone);
-        driver.findElement(By.id("Email")).sendKeys(email);
-        driver.findElement(By.id("Select-role")).sendKeys(role);
-        driver.findElement(By.id("submit-btn")).click();
-
-        //accessing db page
-        driver.findElement(By.id("access-db-btn")).click();
+        page.addNewUser(firstName, lastName, phone, email, role);
 
         //switch to db window
         Set<String> allWindows = driver.getWindowHandles();
-
         for(String each: allWindows){
             if (!each.equals(driver.getWindowHandle()))
                 driver.switchTo().window(each);
         }
-
         //validate user email doesn't exist
         String xpath = "//td[text()='" + email + "']";
-
         //using list to avoid NoSuchElementException, which would stop the execution and not reach Assertion
         List<WebElement> elementList = driver.findElements(By.xpath(xpath));
         Assert.assertEquals(elementList.size(), 0);
@@ -88,12 +92,7 @@ public class UserMgtTest extends BaseTest {
         String email = faker.internet().emailAddress();//test@gmail.com
 
         //adding user to the table
-        driver.findElement(By.id("Firstname")).sendKeys(firstName);
-        driver.findElement(By.id("Lastname")).sendKeys(lastName);
-        driver.findElement(By.id("Phonenumber")).sendKeys(phone);
-        driver.findElement(By.id("Email")).sendKeys(email);
-        driver.findElement(By.id("Select-role")).sendKeys(role);
-        driver.findElement(By.id("submit-btn")).click();
+        page.addNewUser(firstName, lastName, phone, email, role);
 
         //accessing db page
         driver.findElement(By.id("access-db-btn")).click();
@@ -127,12 +126,7 @@ public class UserMgtTest extends BaseTest {
         String email = faker.internet().emailAddress();
 
         //adding the user to staging table
-        driver.findElement(By.id("Firstname")).sendKeys(firstName);
-        driver.findElement(By.id("Lastname")).sendKeys(lastName);
-        driver.findElement(By.id("Phonenumber")).sendKeys(phone);
-        driver.findElement(By.id("Email")).sendKeys(email);
-        driver.findElement(By.id("Select-role")).sendKeys(role);
-        driver.findElement(By.id("submit-btn")).click();
+        page.addNewUser(firstName, lastName, phone, email, role);
 
         //clearing staging table
         driver.findElement(By.id("clear-btn")).click();
@@ -152,12 +146,7 @@ public class UserMgtTest extends BaseTest {
         String email = faker.internet().emailAddress();
 
         //adding the user to staging table
-        driver.findElement(By.id("Firstname")).sendKeys(firstName);
-        driver.findElement(By.id("Lastname")).sendKeys(lastName);
-        driver.findElement(By.id("Phonenumber")).sendKeys(phone);
-        driver.findElement(By.id("Email")).sendKeys(email);
-        driver.findElement(By.id("Select-role")).sendKeys(role);
-        driver.findElement(By.id("submit-btn")).click();
+        page.addNewUser(firstName, lastName, phone, email, role);
 
         //submitting table to db
         driver.findElement(By.id("submit-table-btn")).click();
