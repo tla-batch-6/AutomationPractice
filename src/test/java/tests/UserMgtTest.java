@@ -3,15 +3,16 @@ package tests;
 import base.BaseTest;
 import com.github.javafaker.Faker;
 import data.DataProviders;
+import data.pojos.User;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.UserMgtPage;
+import utils.BrowserUtils;
 
 import java.util.List;
-import java.util.Set;
 
 public class UserMgtTest extends BaseTest {
     private UserMgtPage page;
@@ -61,22 +62,19 @@ public class UserMgtTest extends BaseTest {
     public void test02(String role){
         //creating a test user
         Faker faker = new Faker();
-        String firstName = faker.name().firstName();
-        String lastName = faker.name().lastName();
-        String phone = faker.phoneNumber().cellPhone();
-        String email = faker.internet().emailAddress();//test@gmail.com
+        User user = new User(faker.name().firstName(), faker.name().lastName(), faker.phoneNumber().cellPhone(), faker.internet().emailAddress(), role);
 
         //adding user to the table
-        page.addNewUser(firstName, lastName, phone, email, role);
+        page.addNewUser(user.getFirstName(), user.getLastName(), user.getPhone(), user.getEmail(), user.getRole());
 
+        //accessing db page
+        driver.findElement(By.id("access-db-btn")).click();
         //switch to db window
-        Set<String> allWindows = driver.getWindowHandles();
-        for(String each: allWindows){
-            if (!each.equals(driver.getWindowHandle()))
-                driver.switchTo().window(each);
-        }
+        BrowserUtils.switchToNewWindow(driver);
+
         //validate user email doesn't exist
-        String xpath = "//td[text()='" + email + "']";
+        String xpath = "//td[text()='" + user.getEmail() + "']";
+
         //using list to avoid NoSuchElementException, which would stop the execution and not reach Assertion
         List<WebElement> elementList = driver.findElements(By.xpath(xpath));
         Assert.assertEquals(elementList.size(), 0);
@@ -86,32 +84,21 @@ public class UserMgtTest extends BaseTest {
     public void test03(String role){
         //creating a test user
         Faker faker = new Faker();
-        String firstName = faker.name().firstName();
-        String lastName = faker.name().lastName();
-        String phone = faker.phoneNumber().cellPhone();
-        String email = faker.internet().emailAddress();//test@gmail.com
+        User user = new User(faker.name().firstName(), faker.name().lastName(), faker.phoneNumber().cellPhone(), faker.internet().emailAddress(), role);
 
         //adding user to the table
-        page.addNewUser(firstName, lastName, phone, email, role);
+        page.addNewUser(user.getFirstName(), user.getLastName(), user.getPhone(), user.getEmail(), user.getRole());
 
         //accessing db page
         driver.findElement(By.id("access-db-btn")).click();
-
         //switch to db window
-        Set<String> allWindows = driver.getWindowHandles();
-
-        for(String each: allWindows){
-            if (!each.equals(driver.getWindowHandle()))
-                driver.switchTo().window(each);
-        }
+        BrowserUtils.switchToNewWindow(driver);
 
         //validate user email doesn't exist
         List<WebElement> emailList = driver.findElements(By.xpath("//td[5]"));
-//        System.out.println("email: " + email);
-//        emailList.forEach(a -> System.out.println(a.getText()));
 
         for(WebElement each: emailList){
-            Assert.assertNotEquals(email, each.getText());
+            Assert.assertNotEquals(user.getEmail(), each.getText());
         }
     }
 

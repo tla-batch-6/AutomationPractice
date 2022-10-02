@@ -11,4 +11,6 @@ public class BrowserUtils {
                 driver.switchTo().window(each);
         }
     }
+
+
 }
