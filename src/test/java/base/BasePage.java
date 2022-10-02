@@ -51,7 +51,6 @@ public class BasePage {
                 e.printStackTrace();
             }
         }
-
     }
 
     public void sendKeys(WebElement element, String inputText){

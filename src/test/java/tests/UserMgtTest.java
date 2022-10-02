@@ -106,7 +106,6 @@ public class UserMgtTest extends BaseTest {
         }
 
         //validate user email doesn't exist
-
         List<WebElement> emailList = driver.findElements(By.xpath("//td[5]"));
 //        System.out.println("email: " + email);
 //        emailList.forEach(a -> System.out.println(a.getText()));
@@ -155,5 +154,6 @@ public class UserMgtTest extends BaseTest {
         List<WebElement> trs = driver.findElements(By.xpath("//tbody/tr"));
         Assert.assertEquals(trs.size(), 0);
     }
+
 
 }
