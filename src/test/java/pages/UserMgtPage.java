@@ -34,6 +34,9 @@ public class UserMgtPage extends BasePage {
     @FindBy(id = "access-db-btn")
     public WebElement accessDbBtn;
 
+    @FindBy(id = "submit-table-btn")
+    public WebElement submitToTable;
+
     public void addNewUser(String firstName, String lastName, String phone, String email, String role){
         firstNameInput.sendKeys(firstName);
         lastNameInput.sendKeys(lastName);

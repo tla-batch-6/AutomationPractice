@@ -135,7 +135,8 @@ public class UserMgtTest extends BaseTest {
         page.addNewUser(firstName, lastName, phone, email, role);
 
         //submitting table to db
-        driver.findElement(By.id("submit-table-btn")).click();
+        //driver.findElement(By.id("submit-table-btn")).click();
+        page.submitToTable.click();
 
         //validating table is cleared
         List<WebElement> trs = driver.findElements(By.xpath("//tbody/tr"));
