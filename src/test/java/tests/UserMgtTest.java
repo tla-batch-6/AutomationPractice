@@ -19,7 +19,6 @@ public class UserMgtTest extends BaseTest {
 
     @BeforeMethod(alwaysRun = true)
     public void setUp(){
-        super.setUp();
         driver.findElement(By.xpath("//nav/a[text()='User-Mgt']")).click();
         page = new UserMgtPage(driver);
     }
@@ -58,7 +57,7 @@ public class UserMgtTest extends BaseTest {
         Assert.assertEquals(driver.findElement(By.xpath("//td[5]")).getText(), role);
     }
 
-    @Test(testName = "US1010: Staging table view - DB check", dataProvider = "roles", dataProviderClass = DataProviders.class)
+    @Test(testName = "US1010: Staging table view - DB check", dataProvider = "roles", dataProviderClass = DataProviders.class, groups = "smoke")
     public void test02(String role){
         //creating a test user
         Faker faker = new Faker();

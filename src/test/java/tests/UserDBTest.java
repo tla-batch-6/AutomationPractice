@@ -3,7 +3,6 @@ package tests;
 import base.BaseTest;
 import data.pojos.User;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -11,15 +10,12 @@ import pages.UserDBPage;
 import pages.UserMgtPage;
 import utils.BrowserUtils;
 
-import java.util.List;
-
 public class UserDBTest extends BaseTest {
     UserMgtPage userMgtPage;
     UserDBPage page;
 
     @BeforeMethod
     public void setUp(){
-        super.setUp();
         //1. open db page
         driver.findElement(By.xpath("//nav/a[text()='User-Mgt']")).click();
         userMgtPage = new UserMgtPage(driver);
