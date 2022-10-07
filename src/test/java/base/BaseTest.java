@@ -3,6 +3,7 @@ package base;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
@@ -15,7 +16,7 @@ import java.util.concurrent.TimeUnit;
 
 public class BaseTest {
     protected WebDriver driver;
-    protected ExtentManager extentManager;
+    protected static ExtentManager extentManager;
 
     @BeforeSuite
     public void startReport(){
@@ -39,7 +40,8 @@ public class BaseTest {
     }
 
     @AfterMethod(alwaysRun = true)
-    public void tearDown(){
+    public void tearDown(ITestResult result){
+        extentManager.logResult(result);
         driver.quit();
     }
 

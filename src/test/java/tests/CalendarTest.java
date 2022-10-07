@@ -55,53 +55,53 @@ public class CalendarTest extends BaseTest {
 
     }
 
-    @Test(testName = "US1015: Choosing date from calendar (shorter version)")
-    public void test02(){
-        page.click(page.endDateInput);
-        page.click(page.endDateCalendar);
-        page.click(page.submitBtn);
-        //some code
-        String expectedTxt = "There are 1 days between  + startDate +  and  + endDate + ";
-        String actualTxt = page.getText(page.numberOfDaysTxt);
-        Assert.assertEquals(actualTxt, expectedTxt);
-    }
-
-    //NOTE: Delete all tests below this line once demo is done
-    @Test(testName = "US1015: Choosing date from calendar (shorter version 2)")
-    public void test03(){
-        page.click(page.endDateInput);
-        page.click(page.endDateCalendar);
-        page.click(page.submitBtn);
-        Assert.assertTrue(page.submitBtn.isDisplayed());
-    }
-
-    @Test(testName = "US1015: Choosing date from calendar")
-    public void test04(){
-        driver.findElement(By.xpath("(//div[@class='react-datepicker__input-container'])[2]")).click();
-        driver.findElement(By.xpath("//div[contains(@class, 'keyboard-selected')]/following-sibling::div")).click();
-        driver.findElement(By.xpath("//button[text()='Submit']")).click();
-        String expectedTxt = "There are 1 days between  + startDate +  and  + endDate + ";
-        String actualTxt = driver.findElement(By.id("num-days")).getText();
-        Assert.assertEquals(actualTxt, expectedTxt);
-    }
-
-    @Test(testName = "US1015: Choosing date from calendar 2")
-    public void test05(){
-        driver.findElement(By.xpath("(//div[@class='react-datepicker__input-container'])[2]")).click();
-        driver.findElement(By.xpath("//div[contains(@class, 'keyboard-selected')]/following-sibling::div")).click();
-        Assert.assertTrue(driver.findElement(
-                By.xpath("//div[contains(@class, 'keyboard-selected')]/following-sibling::div")).isDisplayed());
-    }
-
-    @Test(testName = "US1015: Choosing date from calendar 2")
-    public void test06(){
-        driver.findElement(By.xpath("(//div[@class='react-datepicker__input-container'])[2]")).click();
-        driver.findElement(By.xpath("//div[contains(@class, 'keyboard-selected')]/following-sibling::div")).click();
-        driver.findElement(By.xpath("//button[text()='Submit']")).click();
-
-        Assert.assertTrue(driver.findElement(By.xpath("*//[text()='Calendar")).isDisplayed());
-    }
-
+//    @Test(testName = "US1015: Choosing date from calendar (shorter version)")
+//    public void test02(){
+//        page.click(page.endDateInput);
+//        page.click(page.endDateCalendar);
+//        page.click(page.submitBtn);
+//        //some code
+//        String expectedTxt = "There are 1 days between  + startDate +  and  + endDate + ";
+//        String actualTxt = page.getText(page.numberOfDaysTxt);
+//        Assert.assertEquals(actualTxt, expectedTxt);
+//    }
+//
+//    //NOTE: Delete all tests below this line once demo is done
+//    @Test(testName = "US1015: Choosing date from calendar (shorter version 2)")
+//    public void test03(){
+//        page.click(page.endDateInput);
+//        page.click(page.endDateCalendar);
+//        page.click(page.submitBtn);
+//        Assert.assertTrue(page.submitBtn.isDisplayed());
+//    }
+//
+//    @Test(testName = "US1015: Choosing date from calendar")
+//    public void test04(){
+//        driver.findElement(By.xpath("(//div[@class='react-datepicker__input-container'])[2]")).click();
+//        driver.findElement(By.xpath("//div[contains(@class, 'keyboard-selected')]/following-sibling::div")).click();
+//        driver.findElement(By.xpath("//button[text()='Submit']")).click();
+//        String expectedTxt = "There are 1 days between  + startDate +  and  + endDate + ";
+//        String actualTxt = driver.findElement(By.id("num-days")).getText();
+//        Assert.assertEquals(actualTxt, expectedTxt);
+//    }
+//
+//    @Test(testName = "US1015: Choosing date from calendar 2")
+//    public void test05(){
+//        driver.findElement(By.xpath("(//div[@class='react-datepicker__input-container'])[2]")).click();
+//        driver.findElement(By.xpath("//div[contains(@class, 'keyboard-selected')]/following-sibling::div")).click();
+//        Assert.assertTrue(driver.findElement(
+//                By.xpath("//div[contains(@class, 'keyboard-selected')]/following-sibling::div")).isDisplayed());
+//    }
+//
+//    @Test(testName = "US1015: Choosing date from calendar 2")
+//    public void test06(){
+//        driver.findElement(By.xpath("(//div[@class='react-datepicker__input-container'])[2]")).click();
+//        driver.findElement(By.xpath("//div[contains(@class, 'keyboard-selected')]/following-sibling::div")).click();
+//        driver.findElement(By.xpath("//button[text()='Submit']")).click();
+//
+//        Assert.assertTrue(driver.findElement(By.xpath("*//[text()='Calendar")).isDisplayed());
+//    }
+//
 
 
 

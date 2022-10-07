@@ -54,6 +54,7 @@ public class BasePage {
     }
 
     public void sendKeys(WebElement element, String inputText){
+        BaseTest.extentManager.logInfo("Entered the text ", element);
         waitForElementVisibility(element);
         moveIntoView(element);
         highlightElement(element);
@@ -61,6 +62,7 @@ public class BasePage {
     }
 
     public String getText(WebElement element){
+        BaseTest.extentManager.logInfo("Retrieved the text ", element);
         waitForElementVisibility(element);
         moveIntoView(element);
         highlightElement(element);
@@ -68,6 +70,7 @@ public class BasePage {
     }
 
     public void click(WebElement element){
+        BaseTest.extentManager.logInfo("clicked the button ", element);
         waitForElementClickability(element);
         moveIntoView(element);
         highlightElement(element);
