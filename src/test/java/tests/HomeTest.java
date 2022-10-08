@@ -4,16 +4,25 @@ import base.BaseTest;
 import data.DataProviders;
 import org.openqa.selenium.By;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import pages.HomePage;
 
 public class HomeTest extends BaseTest {
+    HomePage page;
+
+    @BeforeMethod
+    public void setUp(){
+        page = new HomePage(driver);
+    }
 
     @Test(testName = "US1021 - Test title of the home page")
     public void test01(){
         String expected = "Automation with Selenium";
         String actual = driver.findElement(By.id("title")).getText();
-        Assert.assertEquals(expected, actual);
+        //Assert.assertEquals(expected, actual);
 //        extentManager.logInfo("Automation with selenium");
+        page.assertEquals(actual, expected);
     }
 
     @Test(testName = "US1023 - Test apple vs banana")

@@ -6,6 +6,7 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.CalendarPage;
+import utils.ExtentManager;
 
 public class CalendarTest extends BaseTest {
 
@@ -55,16 +56,16 @@ public class CalendarTest extends BaseTest {
 
     }
 
-//    @Test(testName = "US1015: Choosing date from calendar (shorter version)")
-//    public void test02(){
-//        page.click(page.endDateInput);
-//        page.click(page.endDateCalendar);
-//        page.click(page.submitBtn);
-//        //some code
-//        String expectedTxt = "There are 1 days between  + startDate +  and  + endDate + ";
-//        String actualTxt = page.getText(page.numberOfDaysTxt);
-//        Assert.assertEquals(actualTxt, expectedTxt);
-//    }
+    @Test(testName = "US1015: Choosing date from calendar (shorter version)")
+    public void test02(){
+        page.click(page.endDateInput);
+        page.click(page.endDateCalendar);
+        page.click(page.submitBtn);
+        //some code
+        String expectedTxt = "There are 1 days between  + startDate +  and  + endDate + ";
+        String actualTxt = page.getText(page.numberOfDaysTxt);
+        Assert.assertEquals(actualTxt, expectedTxt);
+    }
 //
 //    //NOTE: Delete all tests below this line once demo is done
 //    @Test(testName = "US1015: Choosing date from calendar (shorter version 2)")

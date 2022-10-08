@@ -7,9 +7,4 @@
             <class name="tests.ParallelTest" />
         </classes>
     </test>
-    <test name="some">
-        <classes>
-            <class name="tests.ParallelTest" />
-        </classes>
-    </test>
 </suite>
